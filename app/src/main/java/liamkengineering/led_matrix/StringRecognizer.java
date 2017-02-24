@@ -1,6 +1,5 @@
 package liamkengineering.led_matrix;
 
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -11,6 +10,18 @@ import java.util.Map;
 
 public class StringRecognizer {
 
+
+    public static void main(String[] args) {
+        StringRecognizer s = new StringRecognizer("lehtr a", "letter", true);
+        String result = s.wordRecognizer();
+        if(result == null) {
+            System.out.println("failed");
+        }
+        else {
+            System.out.println(result);
+        }
+
+    }
     private String main;
     private boolean let;
     private String match;
@@ -68,9 +79,8 @@ public class StringRecognizer {
 
         if(dif > 0) { // if the string we're analyzing is shorter than the target string
             int cnt1 = 0, cnt2 = 0;
-            int skips = 0;
             while(cnt1 < letters.length()) {
-                if(letters.charAt(cnt1) == match.charAt(cnt2)) { // if they're equal, dec the score
+                if(letters.charAt(cnt1) == match.charAt(cnt2)) { // if they're equal, inc the score
                     ++totScore;
                     ++cnt2;
                 }
@@ -98,15 +108,15 @@ public class StringRecognizer {
         }
 
         else {
-            int cnt1 = 0, cnt2 = 0;
-            int skips = 0;
+            int cnt1 = 0, cnt2 = 0; // if the target string is shorter or equal to the analyzed string
+            // cnt1 accesses analyzed string, cnt2 accesses target string
             while(cnt2<match.length()) {
-                if(letters.charAt(cnt1) == match.charAt(cnt2)) { // if they're equal, dec the score
+                if(letters.charAt(cnt1) == match.charAt(cnt2)) { // if they're equal, inc the score
                     ++totScore;
                     ++cnt1;
                 }
                 else if(dif <= 0) {
-                    if(cnt2+1< match.length() && match.charAt(cnt2 + 1) == match.charAt(cnt1)) {
+                    if(cnt2+1< match.length() && (match.charAt(cnt2 + 1) == letters.charAt(cnt1))) {
                         ++totScore; // give a chance to skip over to the next letter
                         ++cnt2;
                     }

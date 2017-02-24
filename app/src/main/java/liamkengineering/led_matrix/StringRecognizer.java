@@ -41,7 +41,7 @@ public class StringRecognizer {
                 letters += (main.charAt(i));
         }
 
-        int totScore = this.match.length(); // we score the similarity out of a total determined by
+        int totScore = 0; // we score the similarity out of a total determined by
         // the number of letters in the match
 
         int dif = match.length() - letters.length();

@@ -177,17 +177,18 @@ public class MainScreen extends AppCompatActivity {
             TextBlock textBlock = textBlocks.get(textBlocks.keyAt(i));
 
             Log.i("app", textBlock.getValue());
-            Toast t = Toast.makeText(MainScreen.this, textBlock.getValue(), Toast.LENGTH_SHORT);
-            t.show();
+
             StringRecognizer sLet = new StringRecognizer(textBlock.getValue().toLowerCase(), "letter", true);
             String let = sLet.wordRecognizer();
             if(let != null) // if it's not null, it'll be a letter
             {
+                Toast.makeText(MainScreen.this, let, Toast.LENGTH_SHORT).show();
                 sendData(let.charAt(0));
             }
             StringRecognizer sHeart = new StringRecognizer(textBlock.getValue().toLowerCase(), "heart", false);
             String hrt = sHeart.wordRecognizer();
-            if(hrt !=null) {
+            if(hrt !=null && let==null) {
+                Toast.makeText(MainScreen.this, hrt, Toast.LENGTH_SHORT).show();
                 sendData('*');
             }
             // Do something with value
